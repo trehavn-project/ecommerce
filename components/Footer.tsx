@@ -37,6 +37,12 @@ const SocialIcon: React.FC<{ name: string; href: string; children: React.ReactNo
   </a>
 );
 
+const PaymentIcon: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => (
+  <div className={`h-6 px-1.5 flex items-center justify-center bg-white border border-gray-200 rounded-[3px] shadow-sm ${className}`}>
+    {children}
+  </div>
+);
+
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
@@ -74,15 +80,80 @@ const Footer: React.FC = () => {
           <div className="flex flex-col items-center md:items-end space-y-6">
             <div className="flex flex-col md:flex-row items-center md:space-x-8 space-y-4 md:space-y-0">
               <button id="catalog" onClick={() => window.print()} className="text-[9px] uppercase tracking-widest font-light text-gray-400 hover:text-trehavn-brown transition-colors">Digital Catalog</button>
-              <a href="#" className="text-[9px] uppercase tracking-widest font-light text-gray-400 hover:text-trehavn-brown transition-colors">Terms of Service</a>
-              <a href="#" className="text-[9px] uppercase tracking-widest font-light text-gray-400 hover:text-trehavn-brown transition-colors">Privacy Policy</a>
               <a href="#inquire" className="text-[9px] uppercase tracking-widest font-light text-trehavn-teal hover:text-trehavn-brown transition-colors">Trade Inquiry</a>
             </div>
           </div>
         </div>
 
-        <div className="text-center text-[10px] uppercase tracking-[0.3em] text-gray-400 pt-8 border-t border-gray-100 font-light">
-          © {currentYear} TREHAVN. Handcrafted in Turkey, Delivered Worldwide.
+        {/* Bottom Strip mimicking reference image */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end pt-8 border-t border-gray-100 font-light gap-8">
+          <div className="flex flex-col space-y-4">
+            <div className="text-[12px] text-gray-600 font-sans tracking-tight">
+              © {currentYear} TREHAVN. Handcrafted in Turkey, Delivered Worldwide.
+            </div>
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-[11px] text-gray-500 font-sans">
+              <a href="#" className="hover:text-trehavn-teal transition-colors">Refund policy</a>
+              <a href="#" className="hover:text-trehavn-teal transition-colors">Privacy policy</a>
+              <a href="#" className="hover:text-trehavn-teal transition-colors">Terms of service</a>
+              <a href="#" className="hover:text-trehavn-teal transition-colors">Shipping policy</a>
+              <a href="#" className="hover:text-trehavn-teal transition-colors">Contact information</a>
+              <a href="#" className="hover:text-trehavn-teal transition-colors">Cancellation policy</a>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            {/* Amazon Pay */}
+            <PaymentIcon>
+               <svg className="w-6 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+            </PaymentIcon>
+            {/* Amex */}
+            <PaymentIcon className="bg-[#0070d1] border-none">
+              <span className="text-[7px] text-white font-bold italic tracking-tighter">AMEX</span>
+            </PaymentIcon>
+            {/* Apple Pay */}
+            <PaymentIcon>
+              <div className="flex items-center space-x-0.5">
+                <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.96.95-2.12 2.1-3.64 2.1-1.54 0-2.03-1-3.66-1-1.64 0-2.18 1-3.65 1-1.48 0-2.8-1.45-3.8-2.9C.25 16.5-1.07 10.5 1.04 6.94c1.05-1.78 2.85-2.9 4.84-2.93 1.5 0 2.92 1.04 3.84 1.04.9 0 2.62-1.23 4.41-1.05 1.8.18 3.16 1.05 4.04 2.3-3.15 1.88-2.65 6.02.5 7.28-.96 2.5-2.22 4.7-3.62 6.7zM13 3.5c0-1.85-1.63-3.46-3.43-3.5C9.4 1.95 11.23 3.5 13 3.5z"/></svg>
+                <span className="text-[8px] font-bold">Pay</span>
+              </div>
+            </PaymentIcon>
+            {/* Diners Club */}
+            <PaymentIcon>
+              <div className="w-3 h-3 border-2 border-[#0079be] rounded-full flex items-center justify-center">
+                <div className="w-1 h-1 bg-[#0079be] rounded-full"></div>
+              </div>
+            </PaymentIcon>
+            {/* Discover */}
+            <PaymentIcon>
+               <span className="text-[7px] text-[#ff6000] font-black italic tracking-tighter uppercase">Discover</span>
+            </PaymentIcon>
+            {/* Google Pay */}
+            <PaymentIcon>
+              <div className="flex items-center space-x-0.5">
+                <span className="text-[8px] font-bold text-gray-500 uppercase">G Pay</span>
+              </div>
+            </PaymentIcon>
+            {/* Mastercard */}
+            <PaymentIcon>
+               <div className="flex -space-x-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#eb001b] opacity-90"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#f79e1b] opacity-90"></div>
+               </div>
+            </PaymentIcon>
+            {/* PayPal */}
+            <PaymentIcon>
+               <span className="text-[8px] text-[#003087] font-black italic">Pay</span>
+               <span className="text-[8px] text-[#009cde] font-black italic">Pal</span>
+            </PaymentIcon>
+            {/* Shop Pay */}
+            <PaymentIcon className="bg-[#5a31f4] border-none">
+              <span className="text-[8px] text-white font-bold tracking-tighter">shop<span className="text-[7px] opacity-70">Pay</span></span>
+            </PaymentIcon>
+            {/* Visa */}
+            <PaymentIcon>
+               <span className="text-[9px] text-[#1434cb] font-black italic uppercase">Visa</span>
+            </PaymentIcon>
+          </div>
         </div>
       </div>
     </footer>
